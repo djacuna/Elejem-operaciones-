@@ -1,43 +1,26 @@
-# Secrets and runtime configuration
+# Runtime configuration and secrets
 .env
 .env.*
 !.env.example
+clientes/config.js
 *.pem
 *.key
 *.p12
 *.pfx
 *.jks
 *.keystore
-service-account*.json
-*service_role*
-*.secret
-
-# Dependencies and build artifacts
-node_modules/
-dist/
-build/
-coverage/
-.next/
-.expo/
-*.log
-npm-debug.log*
-yarn-debug.log*
-pnpm-debug.log*
-
-# Local tooling and system files
-.DS_Store
-Thumbs.db
-.idea/
-.vscode/
-*.swp
-*.tmp
-
-# Data, exports and backups
-backups/
-dumps/
-exports/
-*.sql.gz
+*service_account*.json
 *.sqlite
 *.sqlite3
 *.db
 *.bak
+
+# Dependencies, builds and machine-generated files
+node_modules/
+dist/
+build/
+coverage/
+*.log
+.DS_Store
+.idea/
+.vscode/
