@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Demostracion autonoma de flujos operativos para una plataforma abierta de servicios tecnicos, sin datos reales.">
+  <title>Operations OSS | Demo sin backend</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-icon">O</span><div><strong>Operations OSS</strong><small>Community preview</small></div></div>
+      <div class="nav-head">ESPACIO DE PRUEBAS</div>
+      <nav aria-label="Navegacion principal">
+        <button class="nav-item active" data-view="resumen" aria-current="page">Resumen</button>
+        <button class="nav-item" data-view="ordenes">Ordenes de trabajo</button>
+        <button class="nav-item" data-view="clientes">Clientes</button>
+        <button class="nav-item" data-view="presupuestos">Presupuestos</button>
+      </nav>
+      <div class="sidebar-footer"><span class="status-dot"></span> Modo demostracion<br><small>No hay conexion a servicios reales.</small></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div class="breadcrumb">OPERACIONES <span>/</span> <span id="crumb">RESUMEN</span></div><div class="demo-pill">DATOS FICTICIOS</div></header>
+      <div class="content">
+        <div class="page-head"><div><p class="eyebrow">PANEL DE OPERACIONES</p><h1 id="heading">Vista general</h1><p class="subtitle" id="subtitle">Una muestra local e interactiva de gestion de servicios tecnicos.</p></div><button id="reset" class="reset" type="button">Restablecer demo</button></div>
+        <div id="view" aria-live="polite"></div>
+        <footer class="footer">Demo aislada para evaluar los flujos del proyecto. No representa una instalacion completa ni usa datos de produccion.</footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
