@@ -1,15 +1,21 @@
-# ELEJEM — Operaciones
+# ELEJEM Operations — Community Source Snapshot
 
-Repositorio privado para el panel de operaciones y el portal compartido de ELEJEM.
+**Experimental open-source preparation based on the ELEJEM server export of 21 October 2026. This is NOT a standalone production-ready release.**
 
-## Situación
-- Fuente disponible: exportación de los archivos del servidor del 21/10/2026.
-- El panel de operaciones comparte scripts, estilos y la aplicación de `clientes/`.
-- La carpeta `operaciones/` del paquete contiene una redirección histórica.
-- **Pendiente:** importar el código de la exportación preparada y recuperar por separado el código fuente del backend Supabase (migraciones, Edge Functions, RLS).
+## Included
+Static HTML, CSS and JavaScript for the shared customer portal and operations dashboard; operational modules cover requests, work orders, planning, CRM, quotes, reporting and profitability. Production Supabase credentials and endpoint references are **not** included in the OSS copy.
 
-## Seguridad
-Nunca subir secretos, archivos `.env`, claves privadas, copias de bases de datos ni datos reales de clientes. Las claves publicables del navegador no deben confundirse con claves privadas de servicio. Revisar cualquier archivo de configuración antes de publicar.
+## Limitations
+The actual PostgreSQL schema, Supabase RLS policies, Edge Functions, migrations, demo data, and build pipeline are **not** in this export. No functional production system can be reconstructed from the frontend alone. Do not connect this code to real ELEJEM customer data or its production backend.
 
-## Despliegue
-Este repositorio no despliega a Hostinger automáticamente. Evitar conectar ramas de pruebas a la base de datos de producción.
+## Local setup
+1. Copy `clientes/config.example.js` to `clientes/config.js`.
+2. Populate it with the URL and **publishable key** of your OWN Supabase test project, not another organization's live backend. Never place `service_role`, `sb_secret_`, or other server secrets in browser scripts.
+3. Update the script reference from `config.example.js` to `config.js` in `clientes/index.html`.
+4. Start a local static HTTP server from the repository root, e.g. `python3 -m http.server 8080`.
+5. Open `http://localhost:8080/clientes/?area=gestion` to inspect the interface. Features requiring the missing backend will not be operational.
+
+## Licensing and assets
+Software source is made available under [GNU AGPL v3](LICENSE), without warranty. ELEJEM names and logos are trademarks of their respective owners, with no trademark permission granted by the source license. The planned community export substitutes original photos and brand artwork with neutral placeholders.
+
+See [ARCHITECTURE.md](ARCHITECTURE.md), [ROADMAP.md](ROADMAP.md), [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [SOURCE-NOTES.md](SOURCE-NOTES.md).
