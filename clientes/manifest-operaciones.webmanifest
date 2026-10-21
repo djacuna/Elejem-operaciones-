@@ -1,0 +1,55 @@
+{
+  "name": "ELEJEM · Centro de operaciones",
+  "short_name": "ELEJEM Ops",
+  "description": "Gestión interna de órdenes, agenda, personal y clientes",
+  "id": "./?app=operaciones",
+  "start_url": "./?area=gestion",
+  "scope": "./",
+  "display": "standalone",
+  "lang": "es",
+  "background_color": "#0c0e12",
+  "theme_color": "#0c0e12",
+  "icons": [
+    {
+      "src": "assets/placeholder.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/placeholder.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "orientation": "any",
+  "categories": [
+    "business",
+    "productivity"
+  ],
+  "shortcuts": [
+    {
+      "name": "Mi día",
+      "short_name": "Mi día",
+      "url": "./?area=gestion&vista=mi-dia",
+      "icons": [
+        {
+          "src": "assets/placeholder.svg",
+          "sizes": "any"
+        }
+      ]
+    },
+    {
+      "name": "Órdenes",
+      "short_name": "Órdenes",
+      "url": "./?area=gestion",
+      "icons": [
+        {
+          "src": "assets/placeholder.svg",
+          "sizes": "any"
+        }
+      ]
+    }
+  ]
+}

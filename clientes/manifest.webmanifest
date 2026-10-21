@@ -1,0 +1,17 @@
+{
+  "name": "ELEJEM · Área cliente",
+  "short_name": "ELEJEM",
+  "description": "Solicitudes, presupuestos y seguimiento de servicios eléctricos",
+  "id": "./?app=clientes",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "es",
+  "background_color": "#0c0e12",
+  "theme_color": "#0c0e12",
+  "icons": [
+    {"src": "assets/placeholder.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"},
+    {"src": "assets/placeholder.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable"}
+  ]
+}

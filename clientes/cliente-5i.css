@@ -1,0 +1,94 @@
+/* ELEJEM · Etapa 5I · área cliente: formularios, pasos, estados y accesibilidad.
+   Mismo lenguaje visual que el panel de operaciones (negro, dorado #f4b223, esquinas contenidas). */
+@view-transition { navigation: auto; }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+.ux-sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: -1px; padding: 0; border: 0; }
+h1, h2, h3 { text-wrap: balance; } p { text-wrap: pretty; }
+::selection { background: #f4b223; color: #111318; }
+:where(button, a, input, select, textarea, summary, [tabindex]):focus-visible { outline: 2px solid #f4b223; outline-offset: 3px; }
+input, select, textarea { font-size: max(16px, 1em); } /* evita el zoom automático de iOS */
+.ux-ico { width: 1.15em; height: 1.15em; vertical-align: -.2em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.topbar .brand img { background: transparent; }
+
+/* Navegación con iconos dibujados */
+.rail button > span[data-ux], .mobile-nav button > span[data-ux] { display: grid; place-items: center; }
+.rail .ux-ico { width: 20px; height: 20px; } .mobile-nav .ux-ico { width: 21px; height: 21px; }
+
+/* Pasos de la solicitud con nombre */
+.progress { gap: 4px; margin-bottom: 40px; }
+.progress i { position: relative; transition: background-color .3s ease; }
+.progress i > span { position: absolute; left: 0; top: 10px; font: 700 10.5px/1 Manrope, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #6f737b; white-space: nowrap; font-style: normal; }
+.progress i.on > span { color: #b9bcc2; }
+.progress i[aria-current="step"] > span { color: #f4b223; }
+@media (max-width: 520px) {
+  .progress i > span { display: none; }
+  .progress i[aria-current="step"] > span { display: block; }
+  .progress i:nth-child(n+4)[aria-current="step"] > span { left: auto; right: 0; }
+}
+
+/* Campos: estados claros */
+.field label .ux-opt { color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0; }
+.field input, .field textarea, .ec-dialog input:not([type=checkbox]) { transition: border-color .18s, box-shadow .18s; }
+:is(.field, .ec-dialog) :is(input, textarea)[aria-invalid="true"] { border-color: #e75d55 !important; box-shadow: 0 0 0 3px #e75d5526; }
+:is(.field, .ec-dialog) :is(input, textarea).ux-valid:not(:focus) { border-color: #3d7a5c; }
+.ux-field-msg { display: block; min-height: 0; margin-top: 6px; color: #ff8a83; font-size: 13px; line-height: 1.45; }
+.ux-field-msg:empty { display: none; }
+.ux-counter { display: block; text-align: right; margin-top: 4px; color: #6f737b; font-size: 12px; font-variant-numeric: tabular-nums; }
+.ux-hint { align-self: center; margin-right: auto; color: var(--muted); font-size: 13px; }
+.workflow-foot:has(.ux-hint:not([hidden])) .ghost { order: -1; }
+#privacy[aria-invalid="true"] { outline: 2px solid #e75d55; outline-offset: 2px; }
+
+/* Contraseña con botón de mostrar */
+.ux-pass { position: relative; display: block; }
+.ux-pass input { padding-right: 92px !important; }
+.ux-pass-btn { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); min-height: 36px; min-width: 76px; padding: 0 12px; border: 1px solid #ffffff22; background: #1c1f25; color: #d9dade; font: 700 11px/1 Manrope, sans-serif; letter-spacing: .08em; text-transform: uppercase; border-radius: 3px; }
+.ec-dialog .ux-pass { margin-top: 6px; } .ec-dialog .ux-pass input { margin-top: 0 !important; }
+.ux-pass-btn:hover { border-color: #f4b223; color: #fff; }
+.ux-pass-btn[aria-pressed="true"] { color: #f4b223; }
+
+/* Requisitos de la contraseña */
+.ux-checklist { list-style: none; margin: -4px 0 18px; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; font-size: 13px; color: #9a9da4; }
+.ux-checklist li { position: relative; padding-left: 20px; transition: color .2s; }
+.ux-checklist li::before { content: ""; position: absolute; left: 0; top: .32em; width: 10px; height: 10px; border: 1.5px solid #5b5f67; border-radius: 50%; }
+.ux-checklist li.ok { color: #cfe9da; }
+.ux-checklist li.ok::before { border-color: #23b26d; background: #23b26d; box-shadow: inset 0 0 0 2px #171a20; }
+@media (max-width: 420px) { .ux-checklist { grid-template-columns: 1fr; } }
+
+/* Selector registro / acceso: estado visible */
+.ec-dialog [data-mode][aria-pressed="false"] { opacity: .78; }
+.ec-dialog [data-mode][aria-pressed="true"] { box-shadow: inset 0 -2px 0 #111318; }
+.ec-dialog::backdrop { background: #05060899; backdrop-filter: blur(3px); }
+.ec-dialog[open] { animation: ux-in .22s cubic-bezier(.22,1,.36,1); }
+@keyframes ux-in { from { opacity: 0; transform: translateY(10px); } }
+
+/* Botón ocupado */
+button[aria-busy="true"] { position: relative; color: transparent !important; pointer-events: none; }
+button[aria-busy="true"]::after { content: ""; position: absolute; inset: 0; margin: auto; width: 18px; height: 18px; border-radius: 50%; border: 2px solid #11131855; border-top-color: #111318; animation: ux-spin .7s linear infinite; }
+@keyframes ux-spin { to { transform: rotate(360deg); } }
+
+/* Subida de fotos accesible por teclado */
+.upload { position: relative; cursor: pointer; transition: border-color .2s, background-color .2s; }
+.upload input[type=file] { display: block !important; position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.upload:focus-within { outline: 2px solid #f4b223; outline-offset: 3px; }
+.upload:hover, .upload.is-drag { border-color: #f4b223; background: #1d1b14; }
+.ux-photo-count { margin: 10px 0 0; color: #cfe9da; font-size: 14px; }
+.ux-photo-count:empty { display: none; }
+
+/* Esqueleto de carga en Mis solicitudes */
+#trackingList.ux-loading > .card { position: relative; min-height: 132px; overflow: hidden; }
+#trackingList.ux-loading > .card p { position: absolute; left: 24px; top: 20px; font-size: 13px; }
+#trackingList.ux-loading > .card::before, #trackingList.ux-loading > .card::after { content: ""; position: absolute; left: 24px; height: 12px; border-radius: 2px; background: linear-gradient(90deg, #22252b 0%, #2d3037 50%, #22252b 100%); background-size: 200% 100%; animation: ux-shimmer 1.3s linear infinite; }
+#trackingList.ux-loading > .card::before { top: 58px; width: 48%; } #trackingList.ux-loading > .card::after { top: 86px; width: 72%; }
+@keyframes ux-shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+
+/* Contenedor adaptable de las tarjetas de servicio */
+.service-grid { container-type: inline-size; }
+@container (max-width: 380px) { .service strong { font-size: 15px; } }
+
+/* Zona segura inferior en iPhone */
+@media (max-width: 720px) { .mobile-nav { padding-bottom: max(6px, env(safe-area-inset-bottom)); } .composer { gap: 6px; } }
+/* Etapa 9C: página de reseña */
+.rv9-card textarea{width:100%;min-height:96px}.rv9-card .btn{display:inline-block;margin-top:8px}
